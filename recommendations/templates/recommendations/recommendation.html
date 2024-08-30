@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .product {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .product:last-child {
+            border-bottom: none;
+        }
+        .product h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+        }
+        .product p {
+            margin: 5px 0 0;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recommended Products</h1>
+        <div id="recommendations">
+            <!-- Recommendations will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch recommendations from the API
+        async function fetchRecommendations(userId) {
+            try {
+                const response = await fetch(`/api/recommendations/${userId}/`);
+                const recommendations = await response.json();
+
+                // Display recommendations in the HTML
+                const recommendationsContainer = document.getElementById('recommendations');
+                recommendations.forEach(product => {
+                    const productDiv = document.createElement('div');
+                    productDiv.className = 'product';
+                    productDiv.innerHTML = `
+                        <h2>${product.name}</h2>
+                        <p>Category: ${product.category}</p>
+                    `;
+                    recommendationsContainer.appendChild(productDiv);
+                });
+            } catch (error) {
+                console.error('Error fetching recommendations:', error);
+            }
+        }
+
+        // Example: Fetch recommendations for user with ID 1
+        fetchRecommendations(1);
+    </script>
+</body>
+</html>
