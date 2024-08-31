@@ -1,9 +1,11 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.recommendations_view, name='recommendations'),
-    path('login/', views.login_signup_view, name='login_signup'),
-    path('products/', views.product_listing_view, name='product_listing'),
-    # Other routes...
+    path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('', views.home, name='home'),
+    path('product/<int:product_id>/', views.product_click, name='product_click'),
 ]

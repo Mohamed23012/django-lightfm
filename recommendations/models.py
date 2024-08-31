@@ -1,18 +1,16 @@
 from django.db import models
-
-# Create your models here.
-
+from django.contrib.auth.models import User
 
 class Product(models.Model):
-    name = models.CharField(max_length=255)
-    category = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
 
-class User(models.Model):
-    username = models.CharField(max_length=255)
-
-class Interaction(models.Model):
+class UserInteraction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    interaction_type = models.CharField(max_length=50)  # Ex: 'click', 'wishlist'
-    interaction_value = models.IntegerField(default=1)
-    created_at = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name}"
