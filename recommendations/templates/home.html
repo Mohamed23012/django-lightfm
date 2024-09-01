@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
-
 {% block content %}
-    <h2>Welcome, {{ user.username }}!</h2>
-    <h3>Products:</h3>
-    <ul>
-        {% for product in products %}
-            <li>
-                <a href="{% url 'product_click' product.id %}">{{ product.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+<h2>Welcome, {{ user.username }}!</h2>
+<h3>Product List</h3>
+<ul class="product-list">
+    {% for product in products %}
+        <li class="product-item">
+            {{ product.name }}
+            <a href="{% url 'add_favorite' product.id %}" class="button">
+                {% if product in user_favorites %}
+                    Remove from Favorites
+                {% else %}
+                    Add to Favorites
+                {% endif %}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
 {% endblock %}

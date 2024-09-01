@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Product Details: {{ product.name }}</h2>
+
+<p>Description of the product goes here.</p> <!-- You can expand with more product details as needed -->
+
+<!-- Button to add the product to the favorites -->
+<form method="post" action="{% url 'add_to_favorites' product.id %}">
+    {% csrf_token %}
+    <button type="submit">Add to Favorites</button>
+</form>
+
+<!-- Back to home -->
+<a href="{% url 'home' %}">Back to Product List</a>
+{% endblock %}
