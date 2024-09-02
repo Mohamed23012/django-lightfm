@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm
-from .models import Product, UserInteraction, Favorite
+from .models import Product, UserInteraction
 
 def redirect_to_register(request):
     """Redirect root URL to the register page."""
@@ -24,31 +24,23 @@ def register(request):
 def home(request):
     """Home view showing product list."""
     products = Product.objects.all()
-    user_favorites = Product.objects.filter(favorite__user=request.user)  # Get favorite products
-    return render(request, 'home.html', {'products': products, 'user_favorites': user_favorites})
+    favorites = UserInteraction.objects.filter(user=request.user, interaction_type='favorite')
+    favorite_products = [interaction.product for interaction in favorites]
+    return render(request, 'home.html', {'products': products, 'favorite_products': favorite_products})
 
 @login_required
-def record_interaction(request, product_id):
+def record_interaction(request, product_id, interaction_type):
     """Log user interaction with a product."""
     product = get_object_or_404(Product, id=product_id)
-    UserInteraction.objects.create(user=request.user, product=product)
+    UserInteraction.objects.create(user=request.user, product=product, interaction_type=interaction_type)
     return redirect('home')
 
 @login_required
-def add_favorite(request, product_id):
-    """Add or remove a product from favorites."""
-    product = get_object_or_404(Product, id=product_id)
-    favorite, created = Favorite.objects.get_or_create(user=request.user, product=product)
-    if not created:
-        favorite.delete()  # Remove from favorites if it already exists
-    return redirect('home')
-
-@login_required
-def favorite_products(request):
-    """Display favorite products."""
-    favorites = Favorite.objects.filter(user=request.user)
-    products = [favorite.product for favorite in favorites]
-    return render(request, 'favorites.html', {'products': products})
+def favorites(request):
+    """View to show user's favorite products."""
+    favorites = UserInteraction.objects.filter(user=request.user, interaction_type='favorite')
+    favorite_products = [interaction.product for interaction in favorites]
+    return render(request, 'favorites.html', {'products': favorite_products})
 
 def logout_view(request):
     """Logout view."""

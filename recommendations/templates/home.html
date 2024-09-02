@@ -3,18 +3,19 @@
 {% block content %}
 <h2>Welcome, {{ user.username }}!</h2>
 <h3>Product List</h3>
-<ul class="product-list">
+<ul>
     {% for product in products %}
-        <li class="product-item">
+        <li>
             {{ product.name }}
-            <a href="{% url 'add_favorite' product.id %}" class="button">
-                {% if product in user_favorites %}
-                    Remove from Favorites
-                {% else %}
-                    Add to Favorites
-                {% endif %}
-            </a>
+            <a href="{% url 'record_interaction' product_id=product.id interaction_type='click' %}">Click</a>
+            {% if product in favorite_products %}
+                <a href="{% url 'record_interaction' product_id=product.id interaction_type='favorite' %}">Unfavorite</a>
+            {% else %}
+                <a href="{% url 'record_interaction' product_id=product.id interaction_type='favorite' %}">Favorite</a>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>
+<p><a href="{% url 'favorites' %}">View Favorites</a></p>
+<p><a href="{% url 'logout' %}">Logout</a></p>
 {% endblock %}

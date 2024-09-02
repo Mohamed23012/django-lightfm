@@ -1,14 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>My Favorite Products</h2>
-<ul class="product-list">
+<h2>Your Favorites</h2>
+<ul>
     {% for product in products %}
-        <li class="product-item">
-            {{ product.name }}
-            <a href="{% url 'add_favorite' product.id %}" class="button">
-                Remove from Favorites
-            </a>
-        </li>
+        <li>{{ product.name }}</li>
     {% endfor %}
+</ul>
+<p><a href="{% url 'home' %}">Back to Home</a></p>
 {% endblock %}

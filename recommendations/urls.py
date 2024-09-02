@@ -8,7 +8,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('home/', views.home, name='home'),
     path('logout/', views.logout_view, name='logout'),
-    path('product/<int:product_id>/click/', views.record_interaction, name='record_interaction'),
-    path('product/<int:product_id>/favorite/', views.add_favorite, name='add_favorite'),
-    path('favorites/', views.favorite_products, name='favorite_products'),
+    path('product/<int:product_id>/interaction/<str:interaction_type>/', views.record_interaction, name='record_interaction'),
+    path('favorites/', views.favorites, name='favorites'),
 ]
