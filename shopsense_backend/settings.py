@@ -20,6 +20,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Ensure this path matches where your static folder is
 ]
+ALLOWED_HOSTS = ['192.168.101.21', 'localhost', '127.0.0.1']
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -138,3 +140,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # shopsense_backend/settings.py
 LOGIN_URL = '/login/'  # or whatever your custom login URL is
 LOGIN_REDIRECT_URL = '/home/' 
+
+
+ALLOWED_HOSTS = ['*']
+DEBUG = True
+# settings.py
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'django_debug.log',
+        },
+    },
+    'root': {
+        'handlers': ['console', 'file'],
+        'level': 'DEBUG',
+    },
+}

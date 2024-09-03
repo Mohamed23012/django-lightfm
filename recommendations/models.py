@@ -15,7 +15,7 @@ class UserInteraction(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    interaction_type = models.CharField(max_length=20, default='click')
+    interaction_type = models.CharField(max_length=20,choices=INTERACTION_CHOICES, default='click')
     timestamp = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
