@@ -126,3 +126,7 @@ def logout_view(request):
     """Logout view."""
     logout(request)
     return redirect('login')
+
+
+
+

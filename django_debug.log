@@ -66,3 +66,54 @@ Products fetched successfully.
 Recorded click interaction for user 4 with product 10
 Fetching products...
 Products fetched successfully.
+Watching for file changes with StatReloader
+Recorded click interaction for user 4 with product 1
+Fetching products...
+Products fetched successfully.
+Recorded click interaction for user 4 with product 1
+Fetching products...
+Products fetched successfully.
+Recorded click interaction for user 4 with product 7
+Fetching products...
+Products fetched successfully.
+Recorded favorite interaction for user 4 with product 7
+Fetching products...
+Products fetched successfully.
+Recorded click interaction for user 4 with product 7
+Fetching products...
+Products fetched successfully.
+Recorded click interaction for user 4 with product 7
+Fetching products...
+Products fetched successfully.
+Recorded click interaction for user 4 with product 7
+Fetching products...
+Products fetched successfully.
+Recorded click interaction for user 4 with product 7
+Fetching products...
+Products fetched successfully.
+Recorded click interaction for user 4 with product 7
+Fetching products...
+Products fetched successfully.
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Fetching products...
+Products fetched successfully.
+Fetching products...
+Products fetched successfully.
+C:\Users\HP\OneDrive\Desktop\django-lightfm\recommendations\views.py changed, reloading.
+Watching for file changes with StatReloader
+Fetching products...
+Products fetched successfully.
+Fetching products...
+Products fetched successfully.
+C:\Users\HP\OneDrive\Desktop\django-lightfm\recommendations\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\OneDrive\Desktop\django-lightfm\recommendations\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\OneDrive\Desktop\django-lightfm\recommendations\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Fetching products...
+Products fetched successfully.
+Recorded click interaction for user 2 with product 3
+Fetching products...
+Products fetched successfully.

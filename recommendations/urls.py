@@ -10,4 +10,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('product/<int:product_id>/interaction/<str:interaction_type>/', views.record_interaction, name='record_interaction'),
     path('favorites/', views.favorites, name='favorites'),
+    
+
 ]
